@@ -66,9 +66,6 @@
   const deleteTodo = async (id: string) => {
     var c = collection(db, "todos");
     await deleteDoc(doc(c, id));
-    var index = todos.findIndex((todo) => todo.id === id);
-    todos.splice(index, 1);
-    todos = [...todos];
   };
 
   setTimeout(() => {
@@ -100,7 +97,7 @@
           }
           if (change.type === "removed") {
             // var index = todos.findIndex((todo) => todo.id === change.doc.id);
-            todos.filter((todo) => todo.id !== change.doc.id);
+            todos = todos.filter((todo) => todo.id !== change.doc.id);
           }
         });
       }
