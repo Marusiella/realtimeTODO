@@ -49,8 +49,17 @@
   };
   const addTodo = async (d: {}) => {
     var c = collection(db, "todos");
-    await addDoc(c, d);
+    var doce = await addDoc(c, d);
     console.log("Added");
+    todos = [
+      ...todos,
+      {
+        id: doce.id,
+        title: title,
+        completed: false,
+        user: auth.currentUser?.uid,
+      },
+    ];
   };
 
   const deleteTodo = async (id: string) => {
@@ -75,10 +84,12 @@
           completed: false,
           title: title,
           user: auth.currentUser?.uid || "",
-        })}>send</button
+        })}
     >
+      send
+    </button>
   </div>
-
+  <br />
   {#each todos as todo}
     <div class="todo">
       <input
@@ -116,18 +127,19 @@
     color: #ffffff;
     transition: 0.1s;
   }
-  .sender {
-    height: 64px;
+  input {
+    font-family: "Inter", sans-serif;
   }
+
   .sender > input {
     margin-bottom: 0px;
     font-size: 30px;
-    height: 100%;
+    height: 50px;
   }
   .sender > button {
-    /* position: relative;
-    top: -3px; */
-    height: 100%;
+    position: relative;
+    top: -3.5px;
+    height: 62px;
     cursor: pointer;
   }
   .sender > button:hover {
@@ -140,7 +152,7 @@
   .todo > button {
     margin: 0;
     position: relative;
-    top: -15px;
+    top: -17.5px;
     height: 50px;
     cursor: pointer;
   }
