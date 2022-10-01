@@ -1,18 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 body {
-    background-color: #212223;
-  }
-.centerthat>input, .sender > input {
-  border: 5px solid #FFFFFF;
+  background-color: #212223;
+}
+.centerthat > input,
+.sender > input {
+  border: 5px solid #ffffff;
   background: none;
   width: 248px;
-height: 52px;
-margin-bottom: 20px;
-font-size: 16px;
+  height: 52px;
+  margin-bottom: 20px;
+  font-size: 16px;
 
-color: #FFFFFF;
+  color: #ffffff;
 }
+
 input:focus {
   outline: none;
 }
@@ -21,6 +23,6 @@ a {
 }
 input::placeholder {
   text-align: center;
-  
+
   color: rgba(255, 255, 255, 0.8);
 }

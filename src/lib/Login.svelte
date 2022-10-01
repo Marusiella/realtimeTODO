@@ -23,7 +23,7 @@
 <div class="centerthat">
   <h1 class="title">Login</h1>
   <div class="smallertext">
-    Don’t have accound? <Link to="/register"
+    Don't have accound? <Link to="/register"
       ><aa class="link">Sign up!</aa></Link
     >
   </div>

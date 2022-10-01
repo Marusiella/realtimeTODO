@@ -112,16 +112,22 @@
     height: 64px;
     font-size: 20px;
     font-weight: 700;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     color: #ffffff;
     transition: 0.1s;
   }
+  .sender {
+    height: 64px;
+  }
   .sender > input {
     margin-bottom: 0px;
+    font-size: 30px;
+    height: 100%;
   }
   .sender > button {
-    position: relative;
-    top: 2px;
+    /* position: relative;
+    top: -3px; */
+    height: 100%;
     cursor: pointer;
   }
   .sender > button:hover {

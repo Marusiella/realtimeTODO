@@ -24,32 +24,66 @@
 
 <div class="centerthat">
   <h1 class="title">Register</h1>
-  <input type="text" name="username" bind:value={email} />
-  <input type="password" name="password" bind:value={password} />
-  <button on:click={SingUp}>Register</button>
-  <Link to="/login">Login</Link>
+  <div class="smallertext">
+    Already have account? <Link to="/register"
+      ><aa class="link">Sign in!</aa></Link
+    >
+  </div>
+  <input
+    type="text"
+    name="username"
+    bind:value={email}
+    placeholder="your@email.com"
+  />
+  <input
+    type="password"
+    name="password"
+    bind:value={password}
+    placeholder="yourpasswordXYZ"
+  />
+  <button on:click={SingUp}>Sign up!</button>
 </div>
 
 <style>
+  .link {
+    color: white;
+    text-decoration: none;
+    /* white-space: nowrap; */
+  }
   .centerthat {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+  .smallertext {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #ffffff;
+    margin-bottom: 40px;
+  }
   .title {
-    font-size: 2rem;
-    color: white;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    display: flex;
+    align-items: flex-end;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 7px;
   }
   button {
-    background-color: #4caf50;
-    border: none;
-    color: white;
-    padding: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+    border: 5px solid #ffffff;
+    background: none;
+    width: 262px;
+    height: 64px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 25px;
+    color: #ffffff;
   }
 </style>
