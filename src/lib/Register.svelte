@@ -25,8 +25,7 @@
 <div class="centerthat">
   <h1 class="title">Register</h1>
   <div class="smallertext">
-    Already have account? <Link to="/register"
-      ><aa class="link">Sign in!</aa></Link
+    Already have account? <Link to="/login"><aa class="link">Sign in!</aa></Link
     >
   </div>
   <input
