@@ -39,6 +39,7 @@
     name="password"
     bind:value={password}
     placeholder="yourpasswordXYZ"
+    on:change={SingUp}
   />
   <button on:click={SingUp}>Sign up!</button>
 </div>

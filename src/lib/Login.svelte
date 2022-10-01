@@ -5,7 +5,7 @@
 
   var email: string = "";
   var password: string = "";
-  const SingIp = () => {
+  const SingUp = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
@@ -38,8 +38,9 @@
     name="password"
     bind:value={password}
     placeholder="yourpasswordXYZ"
+    on:change={SingUp}
   />
-  <button on:click={SingIp}>Sign in!</button>
+  <button on:click={SingUp}>Sign in!</button>
 </div>
 
 <style>

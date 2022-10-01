@@ -9,6 +9,7 @@
     addDoc,
     doc,
     deleteDoc,
+    onSnapshot,
   } from "firebase/firestore";
   import { db, auth } from "./Firebase";
   interface Todo {
@@ -51,15 +52,15 @@
     var c = collection(db, "todos");
     var doce = await addDoc(c, d);
     console.log("Added");
-    todos = [
-      ...todos,
-      {
-        id: doce.id,
-        title: title,
-        completed: false,
-        user: auth.currentUser?.uid,
-      },
-    ];
+    // todos = [
+    //   ...todos,
+    //   {
+    //     id: doce.id,
+    //     title: title,
+    //     completed: false,
+    //     user: auth.currentUser?.uid,
+    //   },
+    // ];
   };
 
   const deleteTodo = async (id: string) => {
@@ -71,7 +72,39 @@
   };
 
   setTimeout(() => {
-    getTodos();
+    // getTodos();
+    // when new data appears in the database, update the todos array
+    onSnapshot(
+      query(collection(db, "todos"), where("user", "==", auth.currentUser.uid)),
+      (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added") {
+            todos = [
+              ...todos,
+              {
+                id: change.doc.id,
+                title: change.doc.data().title,
+                completed: change.doc.data().completed,
+                user: change.doc.data().user,
+              },
+            ];
+          }
+          if (change.type === "modified") {
+            var index = todos.findIndex((todo) => todo.id === change.doc.id);
+            todos[index] = {
+              id: change.doc.id,
+              title: change.doc.data().title,
+              completed: change.doc.data().completed,
+              user: change.doc.data().user,
+            };
+          }
+          if (change.type === "removed") {
+            // var index = todos.findIndex((todo) => todo.id === change.doc.id);
+            todos.filter((todo) => todo.id !== change.doc.id);
+          }
+        });
+      }
+    );
   }, 1000);
 </script>
 
