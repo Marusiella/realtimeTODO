@@ -44,7 +44,7 @@
     background-color: #4caf50;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
