@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { logEvent } from "firebase/analytics";
   import {
     collection,
     getDocs,
@@ -11,7 +12,7 @@
     deleteDoc,
     onSnapshot,
   } from "firebase/firestore";
-  import { db, auth } from "./Firebase";
+  import { db, auth, analytics } from "./Firebase";
   interface Todo {
     id: string;
     title: string;
@@ -39,6 +40,7 @@
   };
 
   const changeTodo = async (id: string) => {
+    logEvent(analytics, "change_todo");
     var c = collection(db, "todos");
     var d = await getDoc(doc(c, id));
     updateDoc(doc(c, id), {
@@ -49,6 +51,7 @@
     // });
   };
   const addTodo = async (d: {}) => {
+    logEvent(analytics, "add_todo");
     var c = collection(db, "todos");
     var doce = await addDoc(c, d);
     console.log("Added");
@@ -64,6 +67,7 @@
   };
 
   const deleteTodo = async (id: string) => {
+    logEvent(analytics, "delete_todo");
     var c = collection(db, "todos");
     await deleteDoc(doc(c, id));
   };
