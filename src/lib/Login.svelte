@@ -20,6 +20,7 @@
   };
 </script>
 
+<title>Login screen</title>
 <div class="centerthat">
   <h1 class="title">Login</h1>
   <div class="smallertext">

@@ -22,6 +22,7 @@
   };
 </script>
 
+<title>Register screen</title>
 <div class="centerthat">
   <h1 class="title">Register</h1>
   <div class="smallertext">

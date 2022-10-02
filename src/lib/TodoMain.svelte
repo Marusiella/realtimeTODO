@@ -109,6 +109,7 @@
   }, 1000);
 </script>
 
+<title>Home todos</title>
 <div class="center">
   <div class="sender">
     <input type="text" bind:value={title} />
