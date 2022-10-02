@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { logEvent } from "firebase/analytics";
+  import { logEvent, setUserProperties } from "firebase/analytics";
+
   import {
     collection,
     getDocs,
@@ -75,6 +76,8 @@
   setTimeout(() => {
     // getTodos();
     // when new data appears in the database, update the todos array
+    // setUserProperties(analytics, { user: auth.currentUser?.uid, });
+
     onSnapshot(
       query(collection(db, "todos"), where("user", "==", auth.currentUser.uid)),
       (snapshot) => {

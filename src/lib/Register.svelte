@@ -2,6 +2,8 @@
   import { createUserWithEmailAndPassword } from "firebase/auth";
   import { auth } from "./Firebase";
   import { Link } from "svelte-routing";
+  import { authErrors } from "./ErrorCodes";
+  var errorText: string = "";
 
   var email: string = "";
   var password: string = "";
@@ -17,6 +19,8 @@
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode + errorMessage);
+        errorText = authErrors[(errorCode as string).split("/")[1]];
+
         // ..
       });
   };
@@ -44,8 +48,18 @@
   />
   <button on:click={SingUp}>Sign up!</button>
 </div>
+{#if errorText}
+  <div class="error">{errorText}</div>
+{/if}
 
 <style>
+  .error {
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    color: red;
+    text-align: center;
+  }
   .link {
     color: white;
     text-decoration: none;

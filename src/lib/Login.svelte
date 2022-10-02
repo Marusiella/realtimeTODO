@@ -1,8 +1,9 @@
 <script lang="ts">
   import { signInWithEmailAndPassword } from "firebase/auth";
+  import { authErrors } from "./ErrorCodes";
   import { auth } from "./Firebase";
   import { Link } from "svelte-routing";
-
+  var errorText: string = "";
   var email: string = "";
   var password: string = "";
   const SingUp = () => {
@@ -15,7 +16,9 @@
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
+        console.log((errorCode as string).split("/")[1]);
+        console.log(authErrors[(errorCode as string).split("/")[1]]);
+        errorText = authErrors[(errorCode as string).split("/")[1]];
       });
   };
 </script>
@@ -42,9 +45,18 @@
     on:change={SingUp}
   />
   <button on:click={SingUp}>Sign in!</button>
+  {#if errorText}
+    <div class="error">{errorText}</div>
+  {/if}
 </div>
 
 <style>
+  .error {
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    color: red;
+  }
   .link {
     color: white;
     text-decoration: none;
