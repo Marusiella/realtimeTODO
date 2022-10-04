@@ -23,7 +23,7 @@
   var todos: Todo[] = [];
   var title: string = "";
   const getTodos = async () => {
-    var c = collection(db, "todos");
+    var c = collection(db, "todos/" + auth.currentUser.uid + "/todos");
     var uid = auth.currentUser?.uid;
     var q = query(c, where("user", "==", uid));
     var querySnapshot = await getDocs(q);
@@ -42,7 +42,7 @@
 
   const changeTodo = async (id: string) => {
     logEvent(analytics, "change_todo");
-    var c = collection(db, "todos");
+    var c = collection(db, "todos/" + auth.currentUser.uid + "/todos");
     var d = await getDoc(doc(c, id));
     updateDoc(doc(c, id), {
       completed: !d.data()?.completed,
@@ -53,7 +53,7 @@
   };
   const addTodo = async (d: {}) => {
     logEvent(analytics, "add_todo");
-    var c = collection(db, "todos");
+    var c = collection(db, "todos/" + auth.currentUser.uid + "/todos");
     var doce = await addDoc(c, d);
     console.log("Added");
     // todos = [
@@ -69,7 +69,7 @@
 
   const deleteTodo = async (id: string) => {
     logEvent(analytics, "delete_todo");
-    var c = collection(db, "todos");
+    var c = collection(db, "todos/" + auth.currentUser.uid + "/todos");
     await deleteDoc(doc(c, id));
   };
 
@@ -79,7 +79,10 @@
     // setUserProperties(analytics, { user: auth.currentUser?.uid, });
 
     onSnapshot(
-      query(collection(db, "todos"), where("user", "==", auth.currentUser.uid)),
+      query(
+        collection(db, "todos/" + auth.currentUser.uid + "/todos"),
+        where("user", "==", auth.currentUser.uid)
+      ),
       (snapshot) => {
         snapshot.docChanges().forEach((change) => {
           if (change.type === "added") {
